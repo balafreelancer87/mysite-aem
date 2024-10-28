@@ -19,7 +19,7 @@ export default async function decorate(block) {
       if (clickMore) {
           console.log(clickMore)
           clickMore.className = "click-more"
-          clickMore.textContent=placeholders['clickHereForMore'];
+          clickMore.textContent=placeholders['placeholderText'];
       }
     });
     ul.append(li);
