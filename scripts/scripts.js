@@ -40,6 +40,28 @@ async function loadFonts() {
   }
 }
 
+/* day 4 links */
+/**
+ * Handles external links and PDFs to be opened in a new tab/window
+ * @param {Element} main The main element
+ */
+function decorateExternalLinks(main) {
+  main.querySelectorAll('a').forEach((a) => {
+    const href = a.getAttribute('href');
+    console.log("href")
+    console.log(href)
+    if (href) {
+      const extension = href.split('.').pop().trim();
+      if (!href.startsWith('/')
+        && !href.startsWith('#')) {
+        if (href.includes('google.com') || (extension === 'pdf')) {
+          a.setAttribute('target', '_blank');
+        }
+      }
+    }
+  });
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -47,6 +69,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    decorateExternalLinks(main)
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
