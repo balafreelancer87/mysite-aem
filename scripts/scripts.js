@@ -48,8 +48,6 @@ async function loadFonts() {
 function decorateExternalLinks(main) {
   main.querySelectorAll('a').forEach((a) => {
     const href = a.getAttribute('href');
-    console.log("href")
-    console.log(href)
     if (href) {
       const extension = href.split('.').pop().trim();
       if (!href.startsWith('/')
