@@ -26,26 +26,26 @@ export async function fetchData(source) {
  * @param {Element} block The block element
  */
 export default async function decorate(block) {
-  // load spreadsheet json block
-  console.log("spreadsheet json block");
-  console.log(block);
-  const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/day5spreadsheet.json';
+    // load spreadsheet json block
+    console.log("spreadsheet json block");
+    console.log(block);
+    const source = block.querySelector('a[href]') ? block.querySelector('a[href]').href : '/day5spreadsheet.json';
+    console.log("source");
+    console.log(source);
+    const resp = await fetch(`${source}?offset=0&limit=20`);
+    const json = await resp.json();
+    console.log(json);
 
-  console.log("source");
-  console.log(source);
-  block.innerHTML = '';
+    if(json?.data?.length){
+        block.innerHTML = '';
+        const ul = document.createElement('ul');
+        json.data.forEach((row) => {
+            console.log(row.Source);
+            const li = document.createElement('li');
+            li.textContent=row.Source;
+            ul.append(li);
+        });
 
-  const resp = await fetch(`${source}`);
-  const json = await resp.json();
-  console.log(json);
-
-  const ul = document.createElement('ul');
-  json.data.forEach((row) => {
-    console.log(row.Source);
-    const li = document.createElement('li');
-    li.textContent=row.Source;
-    ul.append(li);
-  });
-
-  block.append(ul);
+        block.append(ul);
+    }
 }
