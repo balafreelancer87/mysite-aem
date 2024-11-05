@@ -60,21 +60,21 @@ async function handleSubmit(form) {
     console.log("formBody")
     console.log(formBody)
 
-    // const response = await fetch(form.dataset.action, {
-    //   method: 'POST',
-    //   body: JSON.stringify({ data: payload }),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // });
-
-    const response1 = await fetch(form.dataset.action, {
+    const response = await fetch(form.dataset.action, {
       method: 'POST',
-      body: formBody,
+      body: JSON.stringify({ data: payload }),
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
     });
+
+    // const response1 = await fetch(form.dataset.action, {
+    //   method: 'POST',
+    //   body: formBody,
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+    // });
 
     if (response.ok) {
       console.log("post success")

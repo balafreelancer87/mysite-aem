@@ -1,5 +1,12 @@
 sitemaps:
-   example:
-     source: /query-index.json
-     destination: /sitemap-en.xml
-     lastmod: YYYY-MM-DD
+  example:
+    origin: http://localhost:3000
+    default: en
+    lastmod: YYYY-MM-DD
+    languages:
+      en:
+        source: /query-index.json
+        destination: /sitemap.xml
+        alternate: /{path}
+        hreflang: en
+      
